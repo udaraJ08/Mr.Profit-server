@@ -8,7 +8,7 @@ const expences = require('../DB/Expences');
 ////////Get Requests////////////////
 ////////////////////////////////////
 
-router.get("/find/bytime", async (req, res) => {
+router.post("/find/bytime", async (req, res) => {
 
     const exp = req.body;
 
