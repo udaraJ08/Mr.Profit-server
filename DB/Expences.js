@@ -2,7 +2,11 @@ const { mkdir } = require('fs');
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema;
 
-const expencesSchema = new schema({
+const expencesSchema = new Schema({
+    userID: {
+        type: String,
+        required: true
+    },
     time: {
         year: {
             type: Number,
@@ -17,6 +21,10 @@ const expencesSchema = new schema({
         type: Number,
         required: true
     },
+    expences: {
+        type: Object,
+        required: false
+    },
     expencesAmount: {
         type: Number,
         required: true
@@ -24,11 +32,7 @@ const expencesSchema = new schema({
     profit: {
         type: Number,
         require: true
-    },
-    negativeProfit: {
-        type: Number,
-        required: true
-    },
+    }
 }, { timestamps: true })
 
 const expences = mongoose.model('Expence', expencesSchema)

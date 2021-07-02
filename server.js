@@ -3,6 +3,9 @@ const dotenv = require('dotenv')
 const mongoose = require('mongoose')
 const app = express()
 
+//configuring json reading
+app.use(express.json())
+
 //setting dotenv
 dotenv.config()
 const env = process.env
@@ -21,6 +24,7 @@ const dbURI = `mongodb+srv://${env.USER}:${env.PASSWORD}@cluster0.68ray.mongodb.
 
 mongoose.connect(dbURI, { useUnifiedTopology: true, useNewUrlParser: true }).
     then(result => {
+        console.log("DB Connected");
         app.listen(process.env.PORT || 3000, () => {
             console.log(`server is listening !!!`);
         })
