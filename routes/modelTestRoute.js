@@ -112,6 +112,9 @@ router.post("/delete/expences/item", async (req, res) => {
                 break;
             }
             else res.send(data)
+
+            if (Object.keys(exp.expences).length === 1)
+                exp.expences = {}
         }
         data.expencesAmount -= expAmount
         data.profit += expAmount
