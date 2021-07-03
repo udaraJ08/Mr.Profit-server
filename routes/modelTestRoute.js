@@ -108,7 +108,7 @@ router.post("/delete/expences/item", async (req, res) => {
 
             if (key == exp.item) {
                 expAmount = value
-                delete data.expences.key
+                delete data.expences[key]
                 break;
             }
             else res.send(data)
