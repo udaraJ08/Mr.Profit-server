@@ -65,19 +65,25 @@ router.post("/add/expence-item", async (req, res) => {
         }
     })
 
-    for (const [key, value] of Object.entries(exp.items)) {
+    if (data) {
+        for (const [key, value] of Object.entries(exp.items)) {
 
-        for (const [orKey, orValue] of Object.entries(data.expences)) {
+            if (Object.entries(data.expences).length !== 0) {
+                for (const [orKey, orValue] of Object.entries(data.expences)) {
 
-            if (orKey == key) {
-                const expOrAmount = orValue + value
-                data.expences[orKey] = expOrAmount
-                break;
+                    if (orKey == key) {
+                        const expOrAmount = orValue + value
+                        data.expences[orKey] = expOrAmount
+                        break;
+                    } else {
+                        data.expences[key] = value
+                    }
+                }
             } else {
                 data.expences[key] = value
             }
+            expAmount += value
         }
-        expAmount += value
     }
 
     data.expencesAmount += expAmount
