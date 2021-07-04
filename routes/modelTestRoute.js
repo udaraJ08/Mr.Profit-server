@@ -105,25 +105,28 @@ router.post("/delete/expences/item", async (req, res) => {
 
     if (data) {
         for (const [key, value] of Object.entries(data.expences)) {
-
             if (key == exp.item) {
                 expAmount = value
                 delete data.expences[key]
                 break;
             }
-            else res.send(data)
+        }
 
-            if (Object.keys(exp.expences).length === 1)
-                exp.expences = {}
+        // console.log(Object.keys(data).length);
+        if (Object.keys(data.expences).length === 0) {
+            // data.expences = {}
+            console.log(data);
         }
         data.expencesAmount -= expAmount
         data.profit += expAmount
-    } else res.send("No data found !!!")
+    }
 
     expences.findOneAndUpdate({ _id: exp._id }, data, {
-        useFindAndModify: true,
+        useFindAndModify: false,
         new: true
-    }).then(data => res.send(data)).catch(err => {
+    }).then(data => {
+        res.send(data)
+    }).catch(err => {
         if (err)
             res.send(err.message)
     })

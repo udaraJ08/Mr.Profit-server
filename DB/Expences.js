@@ -23,7 +23,8 @@ const expencesSchema = new Schema({
     },
     expences: {
         type: Object,
-        required: false
+        required: true,
+        default: {}
     },
     expencesAmount: {
         type: Number,
@@ -33,7 +34,7 @@ const expencesSchema = new Schema({
         type: Number,
         require: true
     }
-}, { timestamps: true })
+}, { timestamps: true, minimize: false })
 
 const expences = mongoose.model('Expence', expencesSchema)
 
