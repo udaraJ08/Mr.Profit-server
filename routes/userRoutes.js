@@ -11,4 +11,4 @@ route.post('/user/validate', (req, res) => {
     res.send("HEllo this is the user !!!")
 })
 
-module.exports = userModal
+module.exports = route
