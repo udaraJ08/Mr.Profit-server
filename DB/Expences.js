@@ -1,4 +1,3 @@
-const { mkdir } = require('fs');
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema;
 
