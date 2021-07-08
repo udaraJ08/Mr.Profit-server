@@ -35,10 +35,10 @@ route.post('/user/login', async (req, res) => {
         if (auth)
             res.send(handleErrorMsg("", "", true))
         else
-            res.send(handleErrorMsg("", "invalid password", false))
+            res.send(handleErrorMsg("", "*.Invalid password, check the password again", false))
 
     } else {
-        res.send(handleErrorMsg("invalid user", "", false))
+        res.send(handleErrorMsg("*.Invalid user, check the username again", "", false))
     }
 })
 
