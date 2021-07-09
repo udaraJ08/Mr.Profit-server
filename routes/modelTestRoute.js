@@ -21,7 +21,7 @@ router.post("/find/bytime", async (req, res) => {
     }).then(data => {
         if (data)
             res.send(data);
-        else res.send("NO data FOund !!!");
+        else res.send(false);
     }).catch(err => {
         if (err)
             res.send(err.message());
