@@ -12,7 +12,13 @@ router.post("/find/bytime", async (req, res) => {
 
     const exp = req.body;
 
-    const data = await expences.find(exp)
+    const data = await expences.findOne({
+        "userID": exp.userID,
+        "time": {
+            "year": exp.year,
+            "month": exp.month
+        }
+    })
 
     res.send(data)
 })
@@ -118,9 +124,7 @@ router.post("/delete/expences/item", async (req, res) => {
             }
         }
 
-        // console.log(Object.keys(data).length);
         if (Object.keys(data.expences).length === 0) {
-            // data.expences = {}
             console.log(data);
         }
         data.expencesAmount -= expAmount
