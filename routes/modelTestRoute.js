@@ -12,12 +12,19 @@ router.post("/find/bytime", async (req, res) => {
 
     const exp = req.body;
 
-    const data = await expences.findOne({
+    await expences.findOne({
         "userID": exp.userID,
         "time": {
             "year": exp.year,
             "month": exp.month
         }
+    }).then(data => {
+        if (data)
+            console.log(data);
+        else console.log("NO data FOund !!!");
+    }).catch(err => {
+        if (err)
+            res.send(err.message());
     })
 
     res.send(data)
