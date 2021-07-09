@@ -8,12 +8,13 @@ const userModal = require('../DB/User')
 const bcrypt = require('bcrypt')
 
 ///////////Handle Error/////////////
-const handleErrorMsg = (usernameMsg, passwordMsg, status) => {
+const handleErrorMsg = (usernameMsg, passwordMsg, status, data) => {
 
     const errorMsg = {
         username: usernameMsg,
         password: passwordMsg,
-        satus: status
+        satus: status,
+        data: data
     }
 
     return errorMsg
@@ -33,12 +34,12 @@ route.post('/user/login', async (req, res) => {
         const auth = await bcrypt.compare(password, data.password)
 
         if (auth)
-            res.send(handleErrorMsg("", "", true))
+            res.send(handleErrorMsg("", "", true, data))
         else
-            res.send(handleErrorMsg("", "*.Invalid password, check the password again", false))
+            res.send(handleErrorMsg("", "*.Invalid password, check the password again", false, data))
 
     } else {
-        res.send(handleErrorMsg("*.Invalid user, check the username again", "", false))
+        res.send(handleErrorMsg("*.Invalid user, check the username again", "", false, data))
     }
 })
 
